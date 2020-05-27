@@ -1,0 +1,26 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: item-service
+  datasource:
+    url: jdbc:mysql:///anxinpha
+    username: root
+    password: wuxiemian
+    type: com.alibaba.druid.pool.DruidDataSource
+  jackson:
+    default-property-inclusion: non_empty
+  redis:
+    host: 192.168.112.128
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10087/eureka/
+    registry-fetch-interval-seconds: 5
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+mybatis:
+  type-aliases-package: com.anxinpha.item.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

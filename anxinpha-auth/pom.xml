@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>anxinpha</artifactId>
+        <groupId>com.anxinpha.parent</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.anxinpha.auth</groupId>
+    <artifactId>anxinpha-auth</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>anxinpha-auth-common</module>
+        <module>anxinpha-auth-service</module>
+    </modules>
+
+</project>
