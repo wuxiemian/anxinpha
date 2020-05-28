@@ -13,7 +13,6 @@
     <artifactId>anxinpha-user</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>anxinpha-user-common</module>
         <module>anxinpha-user-service</module>
         <module>anxinpha-user-interface</module>
     </modules>

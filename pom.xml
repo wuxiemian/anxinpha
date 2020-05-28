@@ -17,10 +17,8 @@
         <module>anxinpha-upload</module>
         <module>anxinpha-search</module>
         <module>anxinpha-auth</module>
-        <module>anxinpha-auth-common</module>
-        <module>anxinpha-auth-common</module>
-        <module>anxin-user</module>
         <module>anxinpha-user</module>
+        <module>anxinpha-chat</module>
     </modules>
 
     <parent>

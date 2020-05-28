@@ -80,4 +80,15 @@ public class AuthController {
         }
         return ResponseEntity.ok(null);
     }
+
+    @GetMapping("chatLogin")
+    public ResponseEntity<Long> getUserIdByToken(@RequestParam("token")String token){
+        try {
+            UserInfo userInfo = JwtUtils.getInfoFromToken(token, jwtProperties.getPublicKey());
+            return ResponseEntity.ok(userInfo.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok(null);
+    }
 }
