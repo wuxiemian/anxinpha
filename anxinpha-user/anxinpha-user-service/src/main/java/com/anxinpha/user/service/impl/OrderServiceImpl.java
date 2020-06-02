@@ -1,6 +1,7 @@
 package com.anxinpha.user.service.impl;
 
 import com.anxinpha.auth.pojo.UserInfo;
+import com.anxinpha.common.pojo.DataTablesResult;
 import com.anxinpha.common.pojo.PageResult;
 import com.anxinpha.common.utils.BoUtils;
 import com.anxinpha.user.bo.OrderBo;
@@ -203,7 +204,6 @@ public class OrderServiceImpl implements OrderService {
         if(user==null){
             return null;
         }
-
         Order order=new Order();
         //生成订单ID
         Long orderId = OrderIdUtils.getRandomId();
@@ -221,15 +221,14 @@ public class OrderServiceImpl implements OrderService {
         if (orderInfo.getPaymentType()==2){
             order.setStatus(2);
         }
-
         this.orderMapper.insertSelective(order);
-
         List<CartProduct> list=orderInfo.getGoodsList();
         for(CartProduct cartProduct:list){
             OrderItem orderItem=new OrderItem();
             //生成订单商品ID;
             orderItem.setId(String.valueOf(OrderIdUtils.getRandomId()));
             orderItem.setItemId(String.valueOf(cartProduct.getProductId()));
+            orderItem.setShopId(String.valueOf(this.orderItemMapper.getShopIdByGoodsId(cartProduct.getProductId())));
             orderItem.setOrderId(String.valueOf(orderId));
             orderItem.setNum(Math.toIntExact(cartProduct.getProductNum()));
             orderItem.setPrice(cartProduct.getSalePrice());
@@ -254,5 +253,59 @@ public class OrderServiceImpl implements OrderService {
             }
         }
         return orderId;
+    }
+
+    @Override
+    public DataTablesResult getOrdersByShopId(Long shopId) {
+        DataTablesResult dataTablesResult = new DataTablesResult();
+        OrderItem orderItem = new OrderItem();
+        orderItem.setShopId(String.valueOf(shopId));
+        List<OrderItem> orderItems = this.orderItemMapper.select(orderItem);
+        List<Order> orders = orderItems.stream().map(item->{
+            return this.orderMapper.selectByPrimaryKey(item.getOrderId());
+        }).collect(Collectors.toList());
+        dataTablesResult.setData(orders);
+        return dataTablesResult;
+    }
+
+    @Override
+    public DataTablesResult getAllOrders(Long userId) {
+        DataTablesResult dataTablesResult = new DataTablesResult();
+        if (userId!=null) {
+            Long shopId = this.orderMapper.getShopIdByUserId(userId);
+            OrderItem record = new OrderItem();
+            record.setShopId(String.valueOf(shopId));
+            List<OrderItem> orderItems = this.orderItemMapper.select(record);
+            List<Order> list = orderItems.stream().map(orderItem -> this.orderMapper.selectByPrimaryKey(orderItem.getOrderId())).collect(Collectors.toList());
+            dataTablesResult.setData(list);
+            return dataTablesResult;
+        }
+        dataTablesResult.setData(this.orderMapper.selectAll());
+        return dataTablesResult;
+    }
+
+    @Override
+    public Integer getOrderCount() {
+        return this.orderMapper.selectAll().size();
+    }
+
+    @Override
+    public Boolean deliver(String orderId, String shippingName, String shippingCode, BigDecimal postFee) {
+        Order order = new Order();
+        order.setOrderId(orderId);
+        order.setShippingName(shippingName);
+        order.setShippingCode(shippingCode);
+        order.setPostFee(postFee);
+        order.setStatus(3);
+        order.setConsignTime(new Date());
+        order.setUpdateTime(new Date());
+        this.orderMapper.updateByPrimaryKeySelective(order);
+        return true;
+    }
+
+    @Override
+    public Boolean remark(Order order) {
+        this.orderMapper.updateByPrimaryKeySelective(order);
+        return true;
     }
 }

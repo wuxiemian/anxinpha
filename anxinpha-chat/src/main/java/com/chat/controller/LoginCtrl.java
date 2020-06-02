@@ -24,7 +24,7 @@ public class LoginCtrl {
             return "error/error";
         }
         Long id = authClient.getUserIdByToken(token);
-        session.setAttribute("userid",id);
+        session.setAttribute("userid",String.valueOf(id));
         return "chat/chats";
     }
     /**

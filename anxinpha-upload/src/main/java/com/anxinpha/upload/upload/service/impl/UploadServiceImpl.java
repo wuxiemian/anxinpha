@@ -25,7 +25,7 @@ import java.util.List;
 @Service
 public class UploadServiceImpl implements UploadService {
 
-    private static final List<String> TYPES = Arrays.asList("jpg","gif","png");
+    private static final List<String> TYPES = Arrays.asList("jpg","gif","png","jpeg");
     private static final Logger LOGGER = LoggerFactory.getLogger(UploadService.class);
     @Autowired
     private FastFileStorageClient storageClient;

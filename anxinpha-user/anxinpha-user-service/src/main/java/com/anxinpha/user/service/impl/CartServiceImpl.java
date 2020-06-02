@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -62,6 +63,7 @@ public class CartServiceImpl implements CartService {
         List<CartProduct> list = new ArrayList<>();
         for (Object json : jsonList) {
             CartProduct cartProduct = new Gson().fromJson(json.toString(),CartProduct.class);
+            cartProduct.setSalePrice(cartProduct.getSalePrice().divide(BigDecimal.valueOf(100)));
             list.add(cartProduct);
         }
         return list;

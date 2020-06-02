@@ -17,11 +17,13 @@ zuul:
       path: /user/**
     auth-service:
       path: /auth/**
+    search-service:
+      path: /search/**
   host:
     connect-timeout-millis: 15000 #HTTP连接超时要比Hystrix的大
     socket-timeout-millis: 60000   #socket超时
-  add-host-header: true
-  sensitive-headers:
+  add-host-header: true #允许携带头信息
+  sensitive-headers:  #敏感头拦截设置为空
 ribbon:
   ReadTimeout: 10000
   ConnectTimeout: 10000

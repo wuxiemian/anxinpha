@@ -83,6 +83,9 @@ public class AuthController {
 
     @GetMapping("chatLogin")
     public ResponseEntity<Long> getUserIdByToken(@RequestParam("token")String token){
+        if (StringUtils.isBlank(token)){
+            return ResponseEntity.ok(null);
+        }
         try {
             UserInfo userInfo = JwtUtils.getInfoFromToken(token, jwtProperties.getPublicKey());
             return ResponseEntity.ok(userInfo.getId());
@@ -90,5 +93,11 @@ public class AuthController {
             e.printStackTrace();
         }
         return ResponseEntity.ok(null);
+    }
+
+    @GetMapping("loginOut")
+    public ResponseEntity<Void> loginOut(HttpServletRequest request,HttpServletResponse response){
+        CookieUtils.setCookie(request,response,"AX_TOKEN",null,30*60);
+        return ResponseEntity.ok().build();
     }
 }

@@ -1,10 +1,7 @@
 package com.chat.config;
 
-import com.chat.controller.AdminInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -25,11 +22,5 @@ public class MyConfig extends WebMvcConfigurerAdapter {
             }
         };
         return adapter;
-    }
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        //注册TestInterceptor拦截器
-        InterceptorRegistration registration = registry.addInterceptor(new AdminInterceptor());
-        registration.addPathPatterns("/chat/*");
     }
 }

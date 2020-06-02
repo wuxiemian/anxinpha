@@ -48,7 +48,7 @@
 <script type="text/javascript">
 
     var v=parent.oldRemark;
-    if(v==null||v=="null"){
+    if(v==null||v==="null"){
         v="";
     }
     $("#remark").val(v);
@@ -57,15 +57,14 @@
         var index = layer.load(3);
         $.ajax({
             type: 'POST',
-            url: "/order/remark",
-            dataType: 'json',
+            url: "http://api.anxinpha.com/api/user/orderRemark",
             data:{
                 orderId: parent.orderId,
-                message: $("#remark").val()
+                buyerMessage: $("#remark").val()
             },
             success: function(data){
                 layer.close(index);
-                if(data.success==true) {
+                if(data==true) {
                     parent.msgSuccess('操作成功!');
                     parent.refresh();
                     var index = parent.layer.getFrameIndex(window.name);

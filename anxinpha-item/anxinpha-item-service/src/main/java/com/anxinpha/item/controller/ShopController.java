@@ -47,9 +47,9 @@ public class ShopController {
     }
 
     @PostMapping("add")
-    public ResponseEntity<Void> addShop(Shop shop){
+    public ResponseEntity<Boolean> addShop(Shop shop){
         this.shopService.addShop(shop);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.ok(true);
     }
 
     @PutMapping("update")
@@ -83,4 +83,23 @@ public class ShopController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("getinfo")
+    public ResponseEntity<Shop> getInfo(@RequestParam("userId")Long userId){
+        Shop shop = this.shopService.getInfo(userId);
+        if (shop==null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(shop);
+    }
+
+    @GetMapping("getShopName")
+    public ResponseEntity<String> getShopName(@RequestParam("shopId")Long shopId){
+        String shopName = this.shopService.getShopName(shopId);
+        return ResponseEntity.ok(shopName);
+    }
+    @GetMapping("getShopId")
+    public ResponseEntity<Long> getShopId(@RequestParam("userId")Long userId){
+        Long shopId = this.shopService.getShopId(userId);
+        return ResponseEntity.ok(shopId);
+    }
 }

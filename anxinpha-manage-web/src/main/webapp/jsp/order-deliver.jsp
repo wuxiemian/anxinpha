@@ -72,17 +72,12 @@
     var index = layer.load(3);
     $.ajax({
         type: 'GET',
-        url: "/express/list",
-        dataType: 'json',
+        url: "http://api.anxinpha.com/api/item/express/list",
         success: function(data){
             layer.close(index);
-            if(data.success!=true){
-                layer.alert(data.message,{title: '错误信息',icon: 2});
-                return;
-            }
             var i=0;
-            for(i=0;i<data.data.length;i++){
-                $("#shippingName").append("<option value='"+data.data[i].expressName+"'>"+data.data[i].expressName+"</option>");
+            for(i=0;i<data.length;i++){
+                $("#shippingName").append("<option value='"+data[i].expressName+"'>"+data[i].expressName+"</option>");
             }
 
         },
@@ -113,11 +108,11 @@
             submitHandler:function(form){
                 var i = layer.load(3);
                 $(form).ajaxSubmit({
-                    url: "/order/deliver",
+                    url: "http://api.anxinpha.com/api/user/deliver",
                     type: "POST",
                     success: function (data) {
                         layer.close(i);
-                        if (data.success == true) {
+                        if (data == true) {
                             parent.refresh();
                             parent.msgSuccess("发货成功!");
                             var index = parent.layer.getFrameIndex(window.name);

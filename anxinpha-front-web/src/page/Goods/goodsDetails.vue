@@ -148,6 +148,8 @@
 <style lang="scss" scoped>
   @import "../../assets/style/mixin";
 
+
+
   .store-content {
     clear: both;
     width: 1220px;
@@ -276,5 +278,13 @@
       padding-left: 2px;
       font-size: 24px;
     }
+  }
+  </style>
+  <style style=>
+  table {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
   }
 </style>

@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 /**
  * @author 尹硕硕
  * @description
@@ -12,4 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface GoodsApi {
     @GetMapping("goods/one")
     public Goods getGoodsById(@RequestParam("id")Long id);
+    @GetMapping("goods/allfein")
+    public List<Goods> getGoods();
 }

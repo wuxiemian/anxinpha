@@ -34,6 +34,7 @@ public class BoUtils {
 //            goodsBo.setLimitNum(goods.getLimitNum());
 //        }
         BeanUtils.copyProperties(goods,goodsBo);
+        goodsBo.setPrice(goodsBo.getPrice().divide(BigDecimal.valueOf(100)));
         return goodsBo;
     }
 

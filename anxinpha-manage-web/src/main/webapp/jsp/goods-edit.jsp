@@ -133,6 +133,7 @@
 <script charset="utf-8" src="../lib/kindeditor/lang/zh-CN.js"></script>
 <script charset="utf-8" src="../lib/kindeditor/plugins/code/prettify.js"></script>
 <script type="text/javascript" src="../lib/wangeditor/wangEditor.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../lib/wangeditor/wangEditor.css">
 <script type="text/javascript">
 
     jQuery.validator.addMethod("decimalsValue",function(value, element) {
@@ -206,11 +207,11 @@
                     if(parent.location.pathname!='/'){
                         parent.goodsCount();
                         parent.refresh();
-                        parent.msgSuccess("添加成功!");
+                        parent.msgSuccess("修改成功!");
                         var index = parent.layer.getFrameIndex(window.name);
                         parent.layer.close(index);
                     }else{
-                        layer.confirm('添加成功!', {
+                        layer.confirm('修改成功!', {
                             btn: ['确认'],icon: 1
                         }, function(){
                             var index = parent.layer.getFrameIndex(window.name);
@@ -233,7 +234,7 @@
     // 配置服务器端地址
     editor.customConfig.uploadImgServer = 'http://api.anxinpha.com/api/upload//wangeditor/imageUpload';
     editor.customConfig.uploadFileName = 'file';
-    var detailtext = $(".detail");
+    var detailtext = $("#detail");
     editor.customConfig.onchange = function (html) {
         // 监控变化，同步更新到 textarea
         detailtext.val(html)

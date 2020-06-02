@@ -30,6 +30,7 @@ public class User {
     private String phone;
     @Email(message = "邮箱不合法")
     private String email;
+    private Integer roleId;
 
     private Date created;
 
@@ -51,6 +52,14 @@ public class User {
     @Transient
     private Long balance;
 
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
     public String getSalt() {
         return salt;
     }
@@ -59,11 +68,11 @@ public class User {
         this.salt = salt;
     }
 
-    public Boolean getShop() {
+    public Boolean getIsShop() {
         return isShop;
     }
 
-    public void setShop(Boolean shop) {
+    public void setIsShop(Boolean shop) {
         isShop = shop;
     }
 

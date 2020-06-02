@@ -85,7 +85,7 @@
             serverSide: true,//开启服务器模式
             "processing": true,//加载显示提示
             "ajax": {
-                url:"http://api.anxinpha.com/api/item/member/list",
+                url:"http://api.anxinpha.com/api/user/list",
                 type: 'GET',
                 data:{
                     "searchKey": "",
@@ -105,10 +105,19 @@
                         return "<u style=\"cursor:pointer\" class=\"text-primary\" onclick=\"member_show('用户详情','member-show','360','400')\">"+data+"</a>";
                     }
                 },
-                { "data": "sex"},
+                { "data": "sex","defaultContent":""},
                 { "data": "phone"},
                 { "data": "email"},
-                { "data": "address"},
+                { "data": "isShop",
+                    render: function(data,type, row, meta){
+                        if (data == 1){
+                            return "<div>店主</div>";
+                        }else {
+                            return "<div>普通用户</div>";
+                        }
+
+                    }
+                },
                 { "data": "created",
                     render : function(data,type, row, meta) {
                         return date(data);
@@ -158,10 +167,10 @@
     /*统计用户数*/
     function member_count(){
         $.ajax({
-            url:"http://api.anxinpha.com/api/item/member/count",
+            url:"http://api.anxinpha.com/api/user/count",
             type:"GET",
             success:function (data) {
-                $("#memberListCount").html(data.recordsTotal);
+                $("#memberListCount").html(data);
             },
             error:function(XMLHttpRequest){
                 layer.alert('数据处理失败! 错误码:'+XMLHttpRequest.status,{title: '错误信息',icon: 2});

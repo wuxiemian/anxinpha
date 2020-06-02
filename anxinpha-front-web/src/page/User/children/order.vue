@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-        <div v-loading="loading" element-loading-text="加载中..." class="no-info" v-else>
+        <div v-loading="loading" element-loading-text="加载中..." class="no-info" v-if="total===0">
           <div style="padding: 100px 0;text-align: center">
             你还未创建过订单
           </div>
@@ -106,7 +106,7 @@
         window.open(window.location.origin + '#/order/payment?orderId=' + orderId)
       },
       goodsDetails (id) {
-        window.open(window.location.origin + '#/goodsDetails?productId=' + id)
+        window.open(window.location.origin + '#/goodsDetails?goodsId=' + id)
       },
       orderDetail (orderId) {
         this.$router.push({
@@ -142,8 +142,8 @@
         orderList(params).then(res => {
           this.orderList = res.data
           this.total = res.total
-          this.loading = false
         })
+        this.loading = false
       },
       _delOrder (orderId, i) {
         delOrder(orderId).then(res => {

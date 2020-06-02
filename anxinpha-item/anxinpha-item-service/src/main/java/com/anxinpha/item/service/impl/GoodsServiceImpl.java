@@ -99,6 +99,7 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public void addGoods(Goods goods) {
         goods.setPrice(goods.getPrice().multiply(BigDecimal.valueOf(100)));
+        goods.setDetail(goods.getDetail().replace("border=\"0\"","border=\"1\""));
         goods.setStatus((byte) 1);
         goods.setCreated(new Date());
         goods.setUpdated(goods.getCreated());
@@ -125,7 +126,6 @@ public class GoodsServiceImpl implements GoodsService {
             }
 
         }
-
         goodsBo.setCname(cname.toString());
         return goodsBo;
     }
@@ -148,9 +148,13 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<GoodsBo> getGoods(String searchKey, String minDate, String maxDate) {
+    public List<GoodsBo> getGoods(Long userId,String searchKey, String minDate, String maxDate) {
         Example example = new Example(Goods.class);
         Example.Criteria criteria = example.createCriteria();
+        if (userId!=null){
+            Long shopId = this.goodsMapper.getShopIdByUserId(userId);
+            criteria.andEqualTo("shopId",shopId);
+        }
         if (StringUtils.isNotBlank(searchKey)){
             criteria.orLike("title","%"+searchKey+"%").
                     orLike("price","%"+searchKey+"%").
@@ -167,6 +171,7 @@ public class GoodsServiceImpl implements GoodsService {
             GoodsBo goodsBo = BoUtils.Goods2GoodsBo(good);
             String shopName = this.shopMapper.getShopName(good.getShopId());
             goodsBo.setShopname(shopName);
+            goodsBo.setPrice(goodsBo.getPrice().multiply(BigDecimal.valueOf(100)));
             return goodsBo;
         }).collect(Collectors.toList());
         return goodsBos;
@@ -189,7 +194,7 @@ public class GoodsServiceImpl implements GoodsService {
         }else{
             goodsDet.setLimitNum(Long.valueOf(goods.getNum()));
         }
-        goodsDet.setSalePrice(goods.getPrice());
+        goodsDet.setSalePrice(goods.getPrice().divide(BigDecimal.valueOf(100)));
 
 
         goodsDet.setDetail(goods.getDetail());
@@ -248,5 +253,10 @@ public class GoodsServiceImpl implements GoodsService {
         }).collect(Collectors.toList());
         PageInfo<GoodsBo> pageInfo = new PageInfo<>(goodsBos);
         return new PageResult<>(pageInfo.getTotal(),pageInfo.getList());
+    }
+
+    @Override
+    public List<Goods> getGoods1() {
+        return this.goodsMapper.selectAll();
     }
 }

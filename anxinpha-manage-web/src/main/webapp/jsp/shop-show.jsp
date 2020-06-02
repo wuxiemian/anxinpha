@@ -233,11 +233,11 @@
 
     /*产品-添加*/
     function goods_add(title,url){
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
+        // var index = layer.open({
+        //     type: 2,
+        //     title: title,
+        //     content: url
+        // });
         layer_show(title,url);
     }
     /*产品-查看*/

@@ -2,6 +2,7 @@ package com.anxinpha.upload.upload.controller;
 
 import com.anxinpha.common.pojo.WangEditorResult;
 import com.anxinpha.upload.upload.service.UploadService;
+import com.anxinpha.upload.upload.utils.Base64Util;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,16 @@ public class UploadController {
     @PostMapping("imageUpload")
     public ResponseEntity<String> uploadImage(@RequestParam("file")MultipartFile file){
         String url = this.uploadService.uploadImage(file);
+        if(StringUtils.isBlank(url)){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(url);
+    }
+
+    @PostMapping("userImage")
+    public ResponseEntity<String> uploadUserImage(@RequestParam("file")String file){
+        MultipartFile multipartFile = Base64Util.base64ToMultipart(file);
+        String url = this.uploadService.uploadImage(multipartFile);
         if(StringUtils.isBlank(url)){
             return ResponseEntity.badRequest().build();
         }

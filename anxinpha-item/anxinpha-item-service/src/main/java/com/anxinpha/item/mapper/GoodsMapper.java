@@ -16,4 +16,6 @@ public interface GoodsMapper extends Mapper<Goods>, SelectByIdListMapper<Goods,L
     void stopGoods(@Param("id") Long id);
     @Select("UPDATE tb_goods SET `status` = 1 WHERE id = #{id}")
     void startGoods(@Param("id") Long id);
+    @Select("SELECT id FROM tb_shop WHERE user_id = #{id}")
+    Long getShopIdByUserId(@Param("id") Long userId);
 }

@@ -81,7 +81,7 @@ export const delOrder = (params) => {
 }
 // 商品列表
 export const getSearch = (params) => {
-  return http.fetchGet('http://api.anxinpha.com/api/item/goods/search', params)
+  return http.fetchGet('http://api.anxinpha.com/api/search/goods', params)
 }
 // 快速搜索
 export const getQuickSearch = (params) => {

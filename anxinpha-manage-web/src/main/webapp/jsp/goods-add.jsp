@@ -37,7 +37,7 @@
 <div class="page-container">
     <%=htmlData%>
     <form name="goods-add" action="" method="post" class="form form-horizontal" id="goods-add">
-        <input id="id" type="text" name="id" hidden>
+        <input id="id" type="text" name="shopId" hidden>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>产品标题：</label>
             <div class="formControls col-xs-8 col-sm-9">
@@ -53,7 +53,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品分类：</label>
             <div class="formControls col-xs-8 col-sm-9">
-                <input type="text" hidden class="input-text" id="cid" name="cid" >
+                <input type="text" hidden class="input-text" id="cid" name="cids" >
                 <input type="text" onclick="chooseCategory()" readonly class="input-text" value="" placeholder="请点击选择按钮选择商品分类" id="cname" name="cname" style="width:50%">
                 <input type="button" onclick="chooseCategory()" class="btn btn-secondary radius" value="选择类别">
             </div>
@@ -131,8 +131,9 @@
 <script charset="utf-8" src="../lib/kindeditor/lang/zh-CN.js"></script>
 <script charset="utf-8" src="../lib/kindeditor/plugins/code/prettify.js"></script>
 <script type="text/javascript" src="../lib/wangeditor/wangEditor.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../lib/wangeditor/wangEditor.css">
 <script type="text/javascript">
-
+    $("#id").val(parent.shopId);
     jQuery.validator.addMethod("decimalsValue",function(value, element) {
         var decimalsValue =/^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$/ ;
         return this.optional(element) || (decimalsValue.test(value));
@@ -189,6 +190,9 @@
                 required:true,
                 maxlength:4,
             },
+            cid:{
+                required:true,
+            }
         },
         onkeyup:false,
         focusCleanup:false,
@@ -202,7 +206,6 @@
                 success: function(data) {
                     layer.close(index);
                     if(parent.location.pathname!='/'){
-                        parent.goodsCount();
                         parent.refresh();
                         parent.msgSuccess("添加成功!");
                         var index = parent.layer.getFrameIndex(window.name);
@@ -231,7 +234,7 @@
     // 配置服务器端地址
     editor.customConfig.uploadImgServer = 'http://api.anxinpha.com/api/upload//wangeditor/imageUpload';
     editor.customConfig.uploadFileName = 'file';
-    var detailtext = $(".detail");
+    var detailtext = $("#detail");
     editor.customConfig.onchange = function (html) {
         // 监控变化，同步更新到 textarea
         detailtext.val(html)
@@ -772,6 +775,7 @@
                 }else{
                     images+=","+data._raw;
                 }
+                // alert(images)
                 $("#image").val(images);
 
             });

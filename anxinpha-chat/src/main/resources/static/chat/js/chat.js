@@ -78,7 +78,7 @@ layui.use(['form', 'layedit', 'laydate'], function () {
 });
 document.onkeydown = function (event) {
     var e = event || window.event;
-    if (e && e.keyCode == 13) { //回车键的键值为13
+    if (e && e.keyCode === 13) { //回车键的键值为13
         send();
     }
 };
@@ -164,7 +164,8 @@ var app = new Vue({
         return {
             listnickname: [],
             listmessage: [],
-            loginusername: userid
+            loginusername: userid,
+            unread: ''
         }
     },
     mounted: function () {
@@ -203,6 +204,9 @@ var app = new Vue({
                         icon: 0,
                         offset: '50px'
                     });
+                    unread = that.listnickname[i].userid;
+                    alert(unread);
+                    // alert(that.listnickname[i].userid);
                 }
             }
         },
@@ -222,6 +226,10 @@ var app = new Vue({
                 });
                 Vue.set(item, 'active', true);
             });
+            // alert(unread)
+            if (acuserid === this.unread) {
+                this.unread = '';
+            }
             this.getMessageList(acuserid);
             actuserid = acuserid;
         },
@@ -279,7 +287,7 @@ var websocket = null;
 //判断当前浏览器是否支持WebSocket
 if ('WebSocket' in window) {
     //连接WebSocket节点
-    websocket = new WebSocket("ws://localhost:8080/websocket/" + userid);
+    websocket = new WebSocket("ws://localhost:8999/websocket/" + userid);
 } else {
     alert('Not support websocket')
 }

@@ -8,6 +8,28 @@
             <h3 style="margin-left: 13px;">修改头像</h3>
             <y-button text="上传头像" classStyle="main-btn" style="margin: 0;" @btnClick="editAvatar()"></y-button>
           </div>
+
+        </div>
+        <div>
+          &nbsp;&nbsp;&nbsp;&nbsp;用户名：<el-input v-model="username" style="width:300px;" readonly></el-input>
+          <br/>
+          <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;性别：&nbsp;&nbsp;&nbsp;<el-select id="sex" v-model="value" :placeholder="defaulesex">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+          <br/>
+          <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;手机号：<el-input v-model="phone" style="width:300px;"></el-input>
+          <br/>
+          <br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;邮箱：&nbsp;&nbsp;&nbsp;<el-input v-model="email" style="width:300px;"></el-input>
+          <br/>
+          <y-button text="保存修改" :classStyle="username&&phone&&email?'main-btn':'disabled-btn'" style="margin-top: 20px;margin-left: 100px;margin-bottom: 20px;" @btnClick="update" align="center"></y-button>
         </div>
         <div class="edit-avatar" v-if="editAvatarShow">
           <y-shelf title="设置头像">
@@ -74,9 +96,10 @@
     </y-shelf>
   </div>
 </template>
+
 <script>
   import YButton from '/components/YButton'
-  import { upload } from '/api/index'
+  import { upload, userInfo, updateuser } from '/api/index'
   import YShelf from '/components/shelf'
   import vueCropper from 'vue-cropper'
   import { mapState, mapMutations } from 'vuex'
@@ -84,6 +107,14 @@
   export default {
     data () {
       return {
+        options: [{
+          value: '男',
+          label: '男'
+        }, {
+          value: '女',
+          label: '女'
+        }],
+        value: '',
         imgSrc: '',
         editAvatarShow: false,
         cropContext: '',
@@ -105,7 +136,12 @@
           // 开启宽度和高度比例
           fixed: true
         },
-        userId: ''
+        userId: '',
+        username: '',
+        phone: '',
+        email: '',
+        defaulesex: '请选择',
+        file: ''
         // token: ''
       }
     },
@@ -123,6 +159,24 @@
         this.$message({
           message: m,
           type: 'success'
+        })
+      },
+      update () {
+        let params = {
+          id: this.userId,
+          username: this.username,
+          phone: this.phone,
+          email: this.email,
+          sex: this.value,
+          file: this.file
+        }
+        var that = this
+        updateuser(params).then(res => {
+          if (res) {
+            that.messageSuccess('修改成功')
+          } else {
+            that.messageFail('修改失败')
+          }
         })
       },
       messageFail (m) {
@@ -151,11 +205,12 @@
         if (this.option.img) {
           this.$refs.cropper.getCropData((data) => {
             this.imgSrc = data
-            upload({userId: this.userId, imgData: data}).then(res => {
+            upload({file: data}).then(res => {
               if (res) {
                 let path = res
                 let info = this.userInfo
                 info.file = path
+                this.file = res
                 this.RECORD_USERINFO({info: info})
                 this.editAvatarShow = false
                 this.messageSuccess('上传成功')
@@ -176,6 +231,20 @@
         let w = 100 / data.w
         this.option.zoom = w
       }
+    },
+    mounted () {
+      var that = this
+      userInfo().then(res => {
+        if (res) {
+          that.username = res.username
+          that.phone = res.phone
+          that.email = res.email
+          if (res.sex) {
+            that.value = res.sex
+            that.defaulesex = res.sex
+          }
+        }
+      })
     },
     created () {
       this.userId = getStore('userId')

@@ -18,6 +18,8 @@ public class AnxinPhaCorsConfiguration {
 
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("http://manage.anxinpha.com");
+        configuration.addAllowedOrigin("http://www.anxinpha.com");
+        configuration.addAllowedOrigin("http://api.anxinpha.com");
         configuration.setAllowCredentials(true);
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");

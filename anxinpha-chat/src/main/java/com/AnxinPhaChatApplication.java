@@ -14,10 +14,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableDiscoveryClient
 @MapperScan({"com.chat.mapper"})
-public class SpringbootChatApplication {
+public class AnxinPhaChatApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootChatApplication.class, args);
+        SpringApplication.run(AnxinPhaChatApplication.class, args);
     }
 
 }

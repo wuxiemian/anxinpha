@@ -15,7 +15,16 @@ public class Shop {
     private String shopName;
     private String shopIcon;
     private String shopDesc;
+    private Long userId;
     private Date created;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public Date getCreated() {
         return created;

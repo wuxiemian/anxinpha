@@ -56,7 +56,7 @@ public interface GoodsService {
 
     void startGoods(Long id);
 
-    List<GoodsBo> getGoods(String searchKey, String minDate, String maxDate);
+    List<GoodsBo> getGoods(Long userId,String searchKey, String minDate, String maxDate);
 
     int getAllGoodsCount();
 
@@ -65,4 +65,6 @@ public interface GoodsService {
     Goods getGoodsById(Long id);
 
     PageResult<GoodsBo> getFrontGoods(int page, int size, String sort, int priceGt, int priceLte,Long cid);
+
+    List<Goods> getGoods1();
 }

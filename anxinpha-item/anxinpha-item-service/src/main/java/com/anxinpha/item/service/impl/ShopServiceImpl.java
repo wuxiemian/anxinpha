@@ -72,6 +72,7 @@ public class ShopServiceImpl implements ShopService {
         if (StringUtils.isBlank(shop.getShopDesc())){
             shop.setShopDesc(null);
         }
+        this.shopMapper.setUser(shop.getUserId());
         shop.setCreated(new Date());
         this.shopMapper.insertSelective(shop);
     }
@@ -118,5 +119,21 @@ public class ShopServiceImpl implements ShopService {
         Shop shop = new Shop();
         shop.setShopName(shopName);
         return this.shopMapper.selectOne(shop);
+    }
+
+    @Override
+    public Shop getInfo(Long userId) {
+        Long shopId = this.shopMapper.getShopIdByUserId(userId);
+        return this.shopMapper.selectByPrimaryKey(shopId);
+    }
+
+    @Override
+    public String getShopName(Long shopId) {
+        return this.shopMapper.selectByPrimaryKey(shopId).getShopName();
+    }
+
+    @Override
+    public Long getShopId(Long userId) {
+        return this.shopMapper.getShopIdByUserId(userId);
     }
 }

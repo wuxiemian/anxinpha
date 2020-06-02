@@ -18,6 +18,8 @@ public class OrderItem {
 
     private String orderId;
 
+    private String shopId;
+
     private Integer num;
 
     private String title;
@@ -29,6 +31,14 @@ public class OrderItem {
     private String picPath;
     @Transient
     private Integer total;
+
+    public String getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
+    }
 
     public String getId() {
         return id;

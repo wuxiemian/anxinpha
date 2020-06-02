@@ -8,6 +8,8 @@
               <router-link to="/" title="安心在线药房">安心在线药房</router-link>
             </h1>
           </div>
+          <y-button @btnClick="toChat" text="咨询医师"></y-button>
+          <router-link to="/openShop" v-if="!isShop"><font style="color: white">开通店铺</font></router-link>
           <div class="right-box">
             <div class="nav-list">
               <el-autocomplete
@@ -52,11 +54,11 @@
                       <li>
                         <router-link to="/user/addressList">收货地址</router-link>
                       </li>
-                      <li>
-                        <router-link to="/user/support">售后服务</router-link>
+                      <li v-if="isShop">
+                        <a href="http://manage.anxinpha.com/shop-index" >店铺后台管理</a>
                       </li>
-                      <li>
-                        <router-link to="/user/coupon">我的优惠</router-link>
+                      <li v-if="roleId===1">
+                        <a href="http://manage.anxinpha.com/index" >anxin后台管理</a>
                       </li>
                       <li>
                         <a href="javascript:;" @click="_loginOut">退出</a>
@@ -154,6 +156,7 @@
   import { setStore, getStore, removeStore } from '/utils/storage'
   // import store from '../store/'
   import 'element-ui/lib/theme-default/index.css'
+  import { userInfo } from '/api/index.js'
   export default{
     data () {
       return {
@@ -170,7 +173,9 @@
         searchResults: [],
         timeout: null,
         // token: '',
-        navList: []
+        navList: [],
+        isShop: 0,
+        roleId: 0
       }
     },
     computed: {
@@ -217,6 +222,9 @@
         this.$message.error({
           message: m
         })
+      },
+      toChat () {
+        window.location.href = 'http://chat.anxinpha.com'
       },
       // 导航栏文字样式改变
       changePage (v) {
@@ -381,6 +389,10 @@
       if (typeof (this.$route.query.key) !== undefined) {
         this.input = this.$route.query.key
       }
+      userInfo().then(res => {
+        this.isShop = res.isShop
+        this.roleId = res.roleId
+      })
     },
     components: {
       YButton

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.entity.Example.Criteria;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -49,7 +50,7 @@ public class ContentServiceImpl implements ContentService {
                 if(content.getProductId() != null){
                     Goods goods= this.goodsMapper.selectByPrimaryKey(content.getProductId());
                     content.setProductName(goods.getTitle());
-                    content.setSalePrice(goods.getPrice());
+                    content.setSalePrice(goods.getPrice().divide(BigDecimal.valueOf(100)));
                     content.setSubTitle(goods.getSellPoint());
                 }
             }

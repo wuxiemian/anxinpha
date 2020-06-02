@@ -10,7 +10,7 @@
                 <div style="margin-top: 40px;" class="input">
                   <input type="text"
                          v-model="registered.userName" placeholder="账号"
-                         @keyup="registered.userName=registered.userName.replace(/[^\w\.\/]/ig,'')"
+
                          @blur="checkuser(1, registered.userName)">
                 </div>
               </li>
@@ -89,7 +89,6 @@ import YButton from '/components/YButton'
 import { register, captchainit } from '/api/index.js'
 import axios from 'axios'
 var uuid
-var errordata
 export default {
   data () {
     return {
@@ -144,6 +143,7 @@ export default {
       })
     },
     checkuser (datatype, data) {
+      var that = this
       axios.get('http://api.anxinpha.com/api/user/checkUser/' + datatype, {
         params: {
           data
@@ -151,7 +151,13 @@ export default {
       })
         .then(function (res) {
           if (!res.data) {
-            errordata = datatype
+            if (datatype === 1) {
+              that.message('该用户名已被使用！')
+            } else if (datatype === 2) {
+              that.message('该手机号已被使用！')
+            } else if (datatype === 3) {
+              that.message('该邮箱已被使用！')
+            }
           }
         })
         .catch(function (error) {
@@ -159,16 +165,6 @@ export default {
         })
     },
     regist () {
-      if (errordata === 1) {
-        this.message('该用户名已被使用！')
-        return false
-      } else if (errordata === 2) {
-        this.message('该手机号已被使用！')
-        return false
-      } else if (errordata === 3) {
-        this.message('该邮箱已被使用！')
-        return false
-      }
       this.registxt = '注册中...'
       let userName = this.registered.userName
       let userPwd = this.registered.userPwd

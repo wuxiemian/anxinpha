@@ -78,11 +78,11 @@
         submitHandler:function(form){
             var index = layer.load(3);
             $(form).ajaxSubmit({
-                url: "/express/add",
+                url: "http://api.anxinpha.com/api/item/express/add",
                 type: "POST",
                 success: function(data) {
                     layer.close(index);
-                    if(data.success==true){
+                    if(data==true){
                         parent.refresh();
                         parent.msgSuccess("添加成功!");
                         var index = parent.layer.getFrameIndex(window.name);

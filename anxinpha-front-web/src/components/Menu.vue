@@ -92,8 +92,8 @@
 				position: relative
 				padding: 2px 12px
 				box-sizing: border-box
-				height: 26px
-				font-size: 14px
+				height: 50px
+				font-size: 16px
 				cursor: pointer
 				&:hover
 					background: rgba(255, 255, 255, .2)

@@ -34,7 +34,7 @@ public class GoodsController {
 
     @GetMapping("list")
     public ResponseEntity<DataTablesResult> getShopGoods(
-            @RequestParam("id")Long id,
+            @RequestParam(value = "id")Long id,
             @RequestParam(value = "searchKey",required = false) String searchKey,
             @RequestParam(value = "minDate",required = false) String minDate,
             @RequestParam(value = "maxDate",required = false) String maxDate){
@@ -49,11 +49,12 @@ public class GoodsController {
 
     @GetMapping("all")
     public ResponseEntity<DataTablesResult> getGoods(
+            @RequestParam(value = "userId",required = false)Long userId,
             @RequestParam(value = "searchKey",required = false) String searchKey,
             @RequestParam(value = "minDate",required = false) String minDate,
             @RequestParam(value = "maxDate",required = false) String maxDate){
         DataTablesResult dataTablesResult = new DataTablesResult();
-        List<GoodsBo> goods = this.goodsService.getGoods(searchKey,minDate,maxDate);
+        List<GoodsBo> goods = this.goodsService.getGoods(userId,searchKey,minDate,maxDate);
         if (CollectionUtils.isEmpty(goods)){
             return ResponseEntity.notFound().build();
         }
@@ -128,6 +129,7 @@ public class GoodsController {
     public ResponseEntity<DataTablesResult> getGoodsBySearch(){
         DataTablesResult dataTablesResult = new DataTablesResult();
         return ResponseEntity.ok(dataTablesResult);
+
     }
 
     @PutMapping("stop/{id}")
@@ -157,5 +159,10 @@ public class GoodsController {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(goodsDet);
+    }
+    @GetMapping("allfein")
+    public ResponseEntity<List<Goods>> getGoods(){
+        List<Goods> goods = this.goodsService.getGoods1();
+        return ResponseEntity.ok(goods);
     }
 }

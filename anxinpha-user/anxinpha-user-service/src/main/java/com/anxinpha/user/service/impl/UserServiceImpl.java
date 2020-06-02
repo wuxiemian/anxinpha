@@ -6,6 +6,7 @@ import com.anxinpha.user.mapper.UserMapper;
 import com.anxinpha.user.pojo.User;
 import com.anxinpha.user.service.UserService;
 import com.anxinpha.user.utils.CodecUtils;
+import com.anxinpha.user.utils.OrderIdUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -70,9 +72,16 @@ public class UserServiceImpl implements UserService {
         user.setSalt(salt);
         user.setPassword(CodecUtils.md5Hex(user.getPassword(),salt));
         //4.插入
+        user.setState(1);
         user.setCreated(new Date());
         user.setUpdated(new Date());
         this.userMapper.insertSelective(user);
+        User record = new User();
+        record.setUsername(user.getUsername());
+        User user1 = this.userMapper.selectOne(record);
+        this.userMapper.insertChat(String.valueOf(user1.getId()),user1.getUsername(),user1.getFile());
+        this.userMapper.insertFriend(String.valueOf(user1.getId()),"5");
+        this.userMapper.insertFriend("5",String.valueOf(user1.getId()));
         return 2;
     }
 
@@ -103,4 +112,27 @@ public class UserServiceImpl implements UserService {
         user.setUsername(username);
         return this.userMapper.selectOne(user);
     }
+
+    @Override
+    public List<User> getUsers() {
+        return this.userMapper.selectAll();
+    }
+
+    @Override
+    public Integer getCount() {
+        return this.userMapper.selectAll().size();
+    }
+
+    @Override
+    public Boolean update(User user) {
+        if (StringUtils.isBlank(user.getSex())){
+            user.setSex(null);
+        }
+        if (StringUtils.isBlank(user.getFile())){
+            user.setFile(null);
+        }
+        this.userMapper.updateByPrimaryKeySelective(user);
+        return true;
+    }
+
 }

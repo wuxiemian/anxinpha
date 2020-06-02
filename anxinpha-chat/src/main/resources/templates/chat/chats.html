@@ -12,7 +12,7 @@
     <script th:src="@{/static/layui/vue.js}"></script>
     <script th:inline="javascript">
         var basePath = [[${#httpServletRequest.getScheme() + "://" + #httpServletRequest.getServerName() + ":" + #httpServletRequest.getServerPort() + #httpServletRequest.getContextPath()}]];
-        var userId ='';
+        var userid = [[${session.userid}]];
     </script>
 </head>
 
@@ -29,12 +29,12 @@
                         <li class="layui-this">
                             <i class="layui-icon layui-icon-dialogue" style="font-size: 20px;"></i>&nbsp;聊天
                         </li>
-                        <li>
-                            <i class="layui-icon layui-icon-mike" style="font-size: 20px;"></i>&nbsp;语音
-                        </li>
-                        <li>
-                            <i class="layui-icon layui-icon-friends" style="font-size: 20px;"></i>&nbsp;加好友
-                        </li>
+<!--                        <li>-->
+<!--                            <i class="layui-icon layui-icon-mike" style="font-size: 20px;"></i>&nbsp;语音-->
+<!--                        </li>-->
+<!--                        <li>-->
+<!--                            <i class="layui-icon layui-icon-friends" style="font-size: 20px;"></i>&nbsp;加好友-->
+<!--                        </li>-->
                     </ul>
                     <div class="layui-tab-content" style="padding:0px;">
                         <div class="layui-tab-item layui-show" id="vuechat">
@@ -58,6 +58,7 @@
                                                 <img :src=item.uimg style="border-radius:50%;height:60px;">
                                                 <span :class="{'layui-badge-dot':item.newnote,'':!item.newnote,'newnoteid':true}"></span>
                                                 {{item.nickname}}
+                                                <svg v-if="unread === item.userid" t="1590713803278" class="icon" viewBox="0 0 1515 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="736" width="200" height="200"><path d="M1233.386375 1023.999814h-981.940523a251.650113 251.650113 0 0 1-121.832674-31.567679l-34.093094-18.8849 462.09512-471.491147L675.251233 622.068978a110.394032 110.394032 0 0 0 155.87006 0L950.744229 502.48318l451.027862 451.120709-26.553989 26.553989-2.432568 1.615523a250.220283 250.220283 0 0 1-139.399159 42.226413zM195.663905 956.314996a191.374414 191.374414 0 0 0 55.70767 8.319012h981.940523a190.965892 190.965892 0 0 0 78.529245-16.712301L950.744229 586.508915l-77.507938 77.507938a169.871254 169.871254 0 0 1-239.988641 0l-0.222831-0.204261-75.316769-76.858015z" fill="#FECD00" p-id="737"></path><path d="M1375.403794 109.01991l-0.185692-0.167124-2.39543-1.615522A250.164575 250.164575 0 0 0 1233.386375 64.992281h-981.940523a251.742959 251.742959 0 0 0-101.257975 21.336038l-0.779907-0.779908L129.613178 96.559961A251.742959 251.742959 0 0 0 0 316.438133V772.479686c0 138.65639 112.789462 251.445852 251.445852 251.445851h981.940523c138.637821 0 251.445852-112.789462 251.445852-251.445851V316.438133a251.130175 251.130175 0 0 0-109.428433-207.418223zM251.445852 124.413796h981.940523a191.262999 191.262999 0 0 1 78.529245 16.7123L831.121293 622.068978a110.412601 110.412601 0 0 1-155.851491 0L195.682474 132.751377A191.801507 191.801507 0 0 1 251.445852 124.413796z m1173.964861 648.06589a192.247168 192.247168 0 0 1-192.024338 192.098614h-981.940523A192.247168 192.247168 0 0 1 59.421514 772.479686V316.438133a192.21003 192.21003 0 0 1 80.181906-155.981475l493.328553 503.355934 0.222831 0.204261a169.871254 169.871254 0 0 0 239.988641 0L1362.665307 174.550698a191.652953 191.652953 0 0 1 62.745406 141.924573z" fill="#886FF7" p-id="738"></path><path d="M1311.488528 204.484286m-204.484286 0a204.484286 204.484286 0 1 0 408.968572 0 204.484286 204.484286 0 1 0-408.968572 0Z" fill="#FF0000" p-id="739"></path></svg>
                                             </p>
                                         </li>
                                     </ol>
@@ -154,29 +155,9 @@
         </div>
     </div>
 </div>
-<h2 th:class="${userId}"></h2>
 </body>
 <script type="application/javascript" th:src="@{/static/layui/layui.js}"></script>
 <script type="application/javascript" th:src="@{/static/chat/js/recorder.js}"></script>
 <script type="application/javascript" th:src="@{/static/layui/jquery.min.js}"></script>
 <script type="application/javascript" th:src="@{/static/chat/js/chat.js}"></script>
-<script type="text/javascript" th:inline="javascript">
-    var userId=''
-    $(document).ready(function () {
-        $.ajax({
-            type: 'get',
-            async: false,
-            url: 'http://api.anxinpha.com/api/auth/checkLogin',
-            xhrFields: {
-                withCredentials: true
-            },
-            success: function (res) {
-                userId = res.id
-                alert(userId)
-            }
-        });
-        alert(this.userId)
-    });
-
-</script>
 </html>

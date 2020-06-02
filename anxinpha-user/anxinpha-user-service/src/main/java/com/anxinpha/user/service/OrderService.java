@@ -1,10 +1,12 @@
 package com.anxinpha.user.service;
 
+import com.anxinpha.common.pojo.DataTablesResult;
 import com.anxinpha.common.pojo.PageResult;
 import com.anxinpha.user.bo.OrderBo;
 import com.anxinpha.user.pojo.Order;
 import com.anxinpha.user.pojo.OrderInfo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -26,4 +28,14 @@ public interface OrderService {
     Boolean payOrder(String orderId);
 
     Long createOrder(OrderInfo orderInfo);
+
+    DataTablesResult getOrdersByShopId(Long shopId);
+
+    DataTablesResult getAllOrders(Long userId);
+
+    Integer getOrderCount();
+
+    Boolean deliver(String orderId, String shippingName, String shippingCode, BigDecimal postFee);
+
+    Boolean remark(Order order);
 }

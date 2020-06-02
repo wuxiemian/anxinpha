@@ -22,23 +22,23 @@
     <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js" ></script>
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
-    <title>anxin后台管理系统 v1.1</title>
-    <meta name="keywords" content="anxin后台管理系统 v1.1,anxin,anxin购物商城后台管理系统">
-    <meta name="description" content="anxin后台管理系统 v1.1，是一款电商后台管理系统，适合中小型CMS后台系统。">
+    <title>anxin后台管理系统</title>
+    <meta name="keywords" content="anxin后台管理系统">
+    <meta name="description" content="anxin后台管理系统">
 </head>
 <body>
 <header class="navbar-wrapper">
     <div class="navbar navbar-fixed-top">
         <div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/">anxin后台管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/">anxin后台管理系统</a>
-            <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.1</span>
+<%--            <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.1</span>--%>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
             <nav class="nav navbar-nav">
                 <ul class="cl">
-                    <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
-                        <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" onclick="product_add('添加商品','product-add')"><i class="Hui-iconfont">&#xe620;</i> 商品</a></li>
-                            <li><a href="javascript:;" onclick="member_add('添加用户','member-add','','630')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
-                        </ul>
+<%--                    <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>--%>
+<%--                        <ul class="dropDown-menu menu radius box-shadow">--%>
+<%--                            <li><a href="javascript:;" onclick="product_add('添加商品','product-add')"><i class="Hui-iconfont">&#xe620;</i> 商品</a></li>--%>
+<%--                            <li><a href="javascript:;" onclick="member_add('添加用户','member-add','','630')"><i class="Hui-iconfont">&#xe60d;</i> 用户</a></li>--%>
+<%--                        </ul>--%>
 <%--                        <li class="navbar-levelone current"><a href="javascript:;">平台</a></li>--%>
 <%--                        <li class="navbar-levelone"><a href="javascript:;">财务</a></li>--%>
 <%--                        <li ><a href="http://xpay.exrick.cn" target="_blank">XPay支付系统</a></li>--%>
@@ -57,9 +57,9 @@
                             <li><a onclick="logout()">退出</a></li>
                         </ul>
                     </li>
-                    <li id="thanks"> <a onclick="thanks()" title="捐赠"><i class="Hui-iconfont" style="font-size:18px">&#xe6bb;</i></a> </li>
-                    <li id="LockScreen"> <a href="lock-screen" title="锁屏"><i class="Hui-iconfont" style="font-size:18px">&#xe60e;</i></a> </li>
-                    <li id="Hui-msg"> <a onclick="thanks()" title="消息"><span class="badge badge-danger">3</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+<%--                    <li id="thanks"> <a onclick="thanks()" title="捐赠"><i class="Hui-iconfont" style="font-size:18px">&#xe6bb;</i></a> </li>--%>
+<%--                    <li id="LockScreen"> <a href="lock-screen" title="锁屏"><i class="Hui-iconfont" style="font-size:18px">&#xe60e;</i></a> </li>--%>
+<%--                    <li id="Hui-msg"> <a onclick="thanks()" title="消息"><span class="badge badge-danger">3</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>--%>
                     <li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
                             <li><a href="javascript:;" data-val="default" title="默认（蓝色）">默认（蓝色）</a></li>
@@ -77,18 +77,18 @@
 </header>
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
-        <dl id="menu-article">
-            <dt><i class="Hui-iconfont">&#xe616;</i> 商城管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-<%--                    <li><a data-href="content-header-list" data-title="首页导航栏管理" href="javascript:void(0)">首页导航栏管理</a></li>--%>
-<%--                    <li><a data-href="content-panel" data-title="首页板块管理" href="javascript:void(0)">首页板块管理</a></li>--%>
-                    <li><a data-href="content-banner-list" data-title="首页轮播图管理" href="javascript:void(0)">首页轮播图管理</a></li>
-<%--                    <li><a data-href="content-index-list" data-title="首页板块内容管理" href="javascript:void(0)">首页板块内容管理</a></li>--%>
-<%--                    <li><a data-href="content-other-list" data-title="其它板块内容管理" href="javascript:void(0)">其它板块内容管理</a></li>--%>
-                </ul>
-            </dd>
-        </dl>
+<%--        <dl id="menu-article">--%>
+<%--            <dt><i class="Hui-iconfont">&#xe616;</i> 商城管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
+<%--            <dd>--%>
+<%--                <ul>--%>
+<%--&lt;%&ndash;                    <li><a data-href="content-header-list" data-title="首页导航栏管理" href="javascript:void(0)">首页导航栏管理</a></li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <li><a data-href="content-panel" data-title="首页板块管理" href="javascript:void(0)">首页板块管理</a></li>&ndash;%&gt;--%>
+<%--                    <li><a data-href="content-banner-list" data-title="首页轮播图管理" href="javascript:void(0)">首页轮播图管理</a></li>--%>
+<%--&lt;%&ndash;                    <li><a data-href="content-index-list" data-title="首页板块内容管理" href="javascript:void(0)">首页板块内容管理</a></li>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <li><a data-href="content-other-list" data-title="其它板块内容管理" href="javascript:void(0)">其它板块内容管理</a></li>&ndash;%&gt;--%>
+<%--                </ul>--%>
+<%--            </dd>--%>
+<%--        </dl>--%>
 <%--        <dl id="menu-picture">--%>
 <%--            <dt><i class="Hui-iconfont">&#xe634;</i> 缓存管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
 <%--            <dd>--%>
@@ -146,20 +146,20 @@
             <dd>
                 <ul>
                     <li><a data-href="member-list" data-title="会员列表" href="javascript:;">用户列表</a></li>
-                    <li><a data-href="member-del" data-title="删除的会员" href="javascript:;">删除的用户</a></li>
+<%--                    <li><a data-href="member-del" data-title="删除的会员" href="javascript:;">删除的用户</a></li>--%>
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-admin">
-            <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="admin-role" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>
-                    <li><a data-href="admin-permission" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>
-                    <li><a data-href="admin-list" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
-                </ul>
-            </dd>
-        </dl>
+<%--        <dl id="menu-admin">--%>
+<%--            <dt><i class="Hui-iconfont">&#xe62d;</i> 管理员管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
+<%--            <dd>--%>
+<%--                <ul>--%>
+<%--                    <li><a data-href="admin-role" data-title="角色管理" href="javascript:void(0)">角色管理</a></li>--%>
+<%--                    <li><a data-href="admin-permission" data-title="权限管理" href="javascript:void(0)">权限管理</a></li>--%>
+<%--                    <li><a data-href="admin-list" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>--%>
+<%--                </ul>--%>
+<%--            </dd>--%>
+<%--        </dl>--%>
 <%--        <dl id="menu-chart">--%>
 <%--            <dt><i class="Hui-iconfont">&#xe61e;</i> 统计报表<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>--%>
 <%--            <dd>--%>
@@ -172,7 +172,7 @@
             <dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="system-base" data-title="基本设置" href="javascript:void(0)">基本设置</a></li>
+<%--                    <li><a data-href="system-base" data-title="基本设置" href="javascript:void(0)">基本设置</a></li>--%>
                     <li><a data-href="system-express" data-title="快递管理" href="javascript:void(0)">快递管理</a></li>
 <%--                    <li><a data-href="system-shiro" data-title="权限配置" href="javascript:void(0)">权限配置</a></li>--%>
 <%--                    <li><a data-href="system-log" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>--%>
@@ -198,7 +198,7 @@
         <div class="Hui-tabNav-wp">
             <ul id="min_title_list" class="acrossTab cl">
                 <li class="active">
-                    <span title="我的首页" data-href="welcome">我的首页</span>
+                    <span title="分类管理" data-href="product-category">分类管理</span>
                     <em></em></li>
             </ul>
         </div>
@@ -207,7 +207,7 @@
     <div id="iframe_box" class="Hui-article">
         <div class="show_iframe">
             <div style="display:none" class="loading"></div>
-            <iframe scrolling="yes" frameborder="0" src="welcome"></iframe>
+            <iframe scrolling="yes" frameborder="0" src="product-category"></iframe>
         </div>
     </div>
 </section>
@@ -256,25 +256,36 @@
         layer_show(title,url,w,h);
     }
 
-    var username="",description="",sex="",phone="",email="",address="",created="",file="";
+    var username="",roleId="",description="",sex="",phone="",email="",address="",created="",file="";
     $.ajax({
         type: 'GET',
-        url: '/user/userInfo',
+        url: 'http://api.anxinpha.com/api/auth/checkLogin',
+        crossDomain:true, //设置跨域为true
+        xhrFields: {
+            withCredentials: true //默认情况下，标准的跨域请求是不会发送cookie的
+        },
         success:function (data) {
-            if(data.success==true){
-                $("#role").html(data.result.description);
-                $("#username").html(data.result.username);
-                username=data.result.username;
-                description=data.result.description;
-                sex=data.result.sex;
-                phone=data.result.phone;
-                email=data.result.email;
-                address=data.result.address;
-                created=data.result.created;
-                file=data.result.file;
+            if(data){
+                $("#role").html(data.description);
+                $("#username").html(data.username);
+                username=data.username;
+                description=data.description;
+                sex=data.sex;
+                phone=data.phone;
+                email=data.email;
+                address=data.address;
+                created=data.created;
+                roleId=data.roleId
+                file=data.file;
+                if(roleId!==1){
+                    alert("你不是管理员！")
+                    window.location.href="http://www.anxinpha.com";
+                }
             }else {
-                layer.alert(data.message,{title: '错误信息',icon: 2});
+                alert("登录失效")
+                window.location.href="http://www.anxinpha.com";
             }
+
         },
         error:function(XMLHttpRequest){
             layer.alert('数据处理失败! 错误码:'+XMLHttpRequest.status+' 错误信息:'+JSON.parse(XMLHttpRequest.responseText).message,{title: '错误信息',icon: 2});
@@ -284,9 +295,13 @@
     function logout() {
         $.ajax({
             type: 'GET',
-            url: '/user/logout',
+            url: 'http://api.anxinpha.com/api/auth/loginOut',
+            crossDomain:true, //设置跨域为true
+            xhrFields: {
+                withCredentials: true //默认情况下，标准的跨域请求是不会发送cookie的
+            },
             success:function (data) {
-                window.location.href="/login";
+                window.location.href="http://www.anxinpha.com";
             },
             error:function(XMLHttpRequest){
                 layer.alert('数据处理失败! 错误码:'+XMLHttpRequest.status+' 错误信息:'+JSON.parse(XMLHttpRequest.responseText).message,{title: '错误信息',icon: 2});

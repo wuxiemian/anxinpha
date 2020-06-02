@@ -47,4 +47,9 @@ public interface ShopService {
      */
     Shop getShopByShopName(String shopName);
 
+    Shop getInfo(Long userId);
+
+    String getShopName(Long shopId);
+
+    Long getShopId(Long userId);
 }

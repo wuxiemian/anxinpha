@@ -124,7 +124,7 @@
                         return "<span class='price'>"+formatPrice(data)+"</span>";
                     }
                 },
-                {"data":"shopname"},
+                {"data":"shopname","defaultContent":""},
                 { "data": "created",
                     render : function(data,type, row, meta) {
                         return date(data);

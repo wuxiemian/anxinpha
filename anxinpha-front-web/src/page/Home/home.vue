@@ -39,7 +39,7 @@
       <section class="w mt30 clearfix" v-if="item.type === 2">
         <y-shelf :title="item.name">
           <div slot="content" class="hot">
-            <mall-goods :msg="iitem" v-for="(iitem,j) in item.panelContents" :key="j"></mall-goods>
+            <mall-goods1 :msg="iitem" v-for="(iitem,j) in item.panelContents" :key="j"></mall-goods1>
           </div>
         </y-shelf>
       </section>
@@ -51,8 +51,8 @@
               <img v-lazy="iitem.picUrl">
               <a class="cover-link"></a>
             </div>
-            <mall-goods :msg="iitem" v-for="(iitem,j) in item.panelContents" :key="j+'key'" v-if="iitem.type != 2 && iitem.type != 3"></mall-goods>
-          </div>
+            <mall-goods1 :msg="iitem" v-for="(iitem,j) in item.panelContents" :key="j+'key'" v-if="iitem.type != 2 && iitem.type != 3"></mall-goods1>
+           </div>
         </y-shelf>
       </section>
 
@@ -72,7 +72,7 @@
   import { productHome } from '/api/index.js'
   import YShelf from '/components/shelf'
   import product from '/components/product'
-  import mallGoods from '/components/mallGoods'
+  import mallGoods1 from '/components/mallGoods1'
   import Menu from '/components/Menu'
   import { setStore, getStore } from '/utils/storage.js'
   export default {
@@ -121,7 +121,7 @@
           this.$router.push({
             path: '/goodsDetails',
             query: {
-              productId: item.productId
+              goodsId: item.productId
             }
           })
         } else {
@@ -184,7 +184,7 @@
     components: {
       YShelf,
       product,
-      mallGoods,
+      mallGoods1,
       Menu
     }
   }

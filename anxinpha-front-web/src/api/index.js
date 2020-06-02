@@ -5,7 +5,7 @@ export const userLogin = (params) => {
 }
 // 退出登陆
 export const loginOut = (params) => {
-  return http.fetchGet('http://api.anxinpha.com/api/user/loginOut', params)
+  return http.fetchGet('http://api.anxinpha.com/api/auth/loginOut', params)
 }
 // 用户信息
 export const userInfo = (params) => {
@@ -17,15 +17,14 @@ export const register = (params) => {
 }
 // 上传图片
 export const upload = (params) => {
-  return http.fetchPost('http://api.anxinpha.com/api/upload/imageUpload', params)
+  return http.fetchPost('http://api.anxinpha.com/api/upload/userImage', params)
 }
 // 修改头像
 export const updateheadimage = (params) => {
   return http.fetchPost('/member/updateheadimage', params)
 }
-// 捐赠列表
-export const thanksList = (params) => {
-  return http.fetchGet('/member/thanks', params)
+export const updateuser = (params) => {
+  return http.fetchPut('http://api.anxinpha.com/api/user/update', params)
 }
 // 首页接口
 export const productHome = (params) => {
@@ -55,5 +54,8 @@ export const checkPhone = (params) => {
 }
 export const checkEmail = (params) => {
   return http.fetchGet('http://api.anxinpha.com/api/user/checkEmail', params)
+}
+export const openShop = (params) => {
+  return http.fetchPost('http://api.anxinpha.com/api/item/shop/add', params)
 }
 

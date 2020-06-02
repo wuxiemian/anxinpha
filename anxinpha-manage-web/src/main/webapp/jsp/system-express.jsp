@@ -73,7 +73,7 @@
         $('.table').DataTable({
             "processing": true,//加载显示提示
             "ajax": {
-                url:"/express/list/",
+                url:"http://api.anxinpha.com/api/item/express/tablelist/",
                 type: 'GET'
             },
             "columns": [

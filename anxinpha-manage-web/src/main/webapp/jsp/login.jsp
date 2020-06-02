@@ -1,227 +1,230 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>anxin后台管理系统</title>
-    <link rel="Shortcut Icon" href="icon/all.png" />
-    <!-- Meta tag Keywords -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="anxin后台管理系统 v1.0,anxin,anxin购物商城后台管理系统">
-    <meta name="description" content="anxin后台管理系统 v1.0，是一款电商后台管理系统，适合中小型CMS后台系统。">
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-    function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- Meta tag Keywords -->
-
-    <!-- css files -->
-    <link rel="stylesheet" href="../lib/login/style.css" type="text/css" media="all" /> <!-- Style-CSS -->
-    <link rel="stylesheet" href="../lib/login/font-awesome.css"> <!-- Font-Awesome-Icons-CSS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>安心后台管理系统</title>
     <link rel="stylesheet" href="../lib/layer/2.4/skin/layer.css"> <!-- Font-Awesome-Icons-CSS -->
-
-    <!-- js -->
-    <script type="text/javascript" src="../lib/jquery/jquery-2.1.4.min.js"></script>
-    <script src="../lib/login/jquery.vide.min.js"></script>
     <script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
     <script type="text/javascript" src="../lib/jquery.validation/1.14.0/jquery.validate.js"></script>
     <script type="text/javascript" src="../lib/jquery.validation/1.14.0/validate-methods.js"></script>
-    <script type="text/javascript" src="../lib/gt.js"></script>
-    <!-- Hotjar Tracking Code for http://xmadmin.exirck.cn -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:695920,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?90194188523e0a2d04ad3ad170c83f30";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
 
     <style>
-        .title,h6{
-            font-family: "黑体";
-        }
-        .layui-layer-title {
-            padding-right: 305px;
-            font-family:"Microsoft Yahei"
-        }
-        .layui-layer-dialog .layui-layer-content{
-            font-family:"Microsoft Yahei"
-        }
-        .layui-layer-btn{
-            font-family:"Microsoft Yahei"
-        }
-        span.icon1 {
-            top: 23%;
-        }
-        span.icon2 {
-            top: 42%;
-        }
-        #wait {
-            text-align: left;
-            color: #ffffff;
+        * {
+            padding: 0;
             margin: 0;
-            font-family: "黑体";
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .cms_login {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            background-repeat: no-repeat;
+            background-image: url(icon/bg.png);
+            background-size: 100% 100%;
+        }
+
+        .flexCenter {
+            text-align: center;
+            margin: auto;
+        }
+
+        .cms_login_container {
+            width: 70%;
+            height: 70%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cms_login_image {
+            width: 60%;
+            height: 100%;
+        }
+
+        .cms_login_from {
+            width: 40%;
+            height: 100%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #ccc;
+        }
+
+        /* .cms_login_container {
+            width: 30%;
+            height: 70%;
+            border: 1px solid red;
+        } */
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .divBox {
+            display: flex;
+            justify-content: center;
+            width: 80%;
+            height: 46px;
+            margin-top: 20px;
+            margin-left: 10%;
+            position: relative;
+        }
+
+        .cms_login_logo {
+            display: flex;
+            justify-content: center;
+            width: 80%;
+            height: 60px;
+            /* border: 1px solid green; */
+            margin-left: 10%;
+            margin-bottom: 22px;
+            margin-top: 25px;
+        }
+
+        .cms_login_img {
+            width: 44px;
+            height: 44px;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+        }
+
+        .cms_login_ipt {
+            width: 100%;
+            outline: none;
+            padding-left: 50px;
+        }
+
+        .cms_login_ipt60 {
+            width: 60%;
+            outline: none;
+            padding-left: 50px;
+        }
+
+        .cms_login_ver {
+            width: 30%;
+            outline: none;
+            margin-left: 8%;
+            border: 1px solid #c32c2c;
+            background-color: #bd7070;
+            line-height: 46px;
+            letter-spacing: 4px;
+            border-radius: 4px;
+            cursor: default;
+            color: white;
+        }
+
+        .margin_top60 {
+            margin-top: 40px;
+        }
+
+        .login_btn {
+            width: 100%;
+            height: 60px;
+            letter-spacing: 10px;
+            font-size: 24px;
+            background-color: green;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .login_btn:hover {
+            background-color: #044468;
+            border: none;
+            outline: none;
         }
     </style>
 </head>
+
 <body>
-
-<!-- main -->
-<div data-vide-bg="../lib/video/Ipad">
-    <div class="center-container">
-        <!--header-->
-        <div class="header-w3l">
-            <h1>anxin<span class="title">后台管理系统</span></h1>
-        </div>
-        <!--//header-->
-        <div class="main-content-agile">
-            <div class="sub-main-w3">
-                <div class="wthree-pro">
-                    <h2>Login Here</h2>
-                </div>
-                <form id="login" action="" method="post" width="100%">
-                    <input placeholder="用户名" name="username" id="username" class="user" type="text" required="">
-                    <span class="icon1"><i class="fa fa-user" aria-hidden="true"></i></span><br><br>
-                    <input  placeholder="密码" name="password" id="password" class="pass" type="password" required="">
-                    <span class="icon2"><i class="fa fa-unlock" aria-hidden="true"></i></span><br><br>
-
-                    <div id="captcha">
-                        <p id="wait" class="show">正在加载验证码...</p>
+    <div class="cms_login">
+        <div class="cms_login_container flexCenter" style="min-height:390px;">
+            <div class="cms_login_image" style="min-width: 380px;">
+                <!-- <img src="./leftimg_04.png" alt=""> -->
+            </div>
+            <div class="cms_login_from" style="min-width: 380px;">
+                <form>
+                    <div class="cms_login_logo"><span style="font-size:24px;">安心后台管理系统</span></div>
+                    <div class="divBox"> <img class="cms_login_img" src="icon/username_mark.png"> <input
+                            class="cms_login_ipt" type="text" placeholder="请输入账号" id="username"></div>
+                    <div class="divBox"> <img class="cms_login_img" src="icon/password_mark.png"><input type="password"
+                            placeholder="请输入密码" class="cms_login_ipt" id="password"></div>
+                    <div class="divBox"> <img class="cms_login_img" src="icon/verify_mark.png"><input type="text"
+                            placeholder="请输入验证码" class="cms_login_ipt60" id="cms_login_ver_ipt">
+                        <img name="code" id="code" width="116" height="36" onclick="init_captcha()">
                     </div>
-
-                    <div class="sub-w3l">
-                        <h6 onclick="forgetPass()" style="cursor: pointer"><a>游客体验账号密码?</a></h6>
-                        <div class="right-w3l">
-                            <input id="loginButton" type="button" class="login" value="登录">
-                        </div>
+                    <div class="divBox margin_top60" style="border:none;">
+                        <input class="login_btn" type="button" value="登录" name="submit">
                     </div>
                 </form>
             </div>
         </div>
-        <!--//main-->
-
-        <!--footer-->
-        <div class="footer">
-            <p>&copy; 2017 anxin. All rights reserved | Design by <a href="http://blog.exrick.cn" target="_blank">Exrick</a></p>
-        </div>
-        <!--//footer-->
     </div>
-</div>
-<script type="text/javascript">
 
-    var handler = function (captchaObj) {
-        captchaObj.appendTo('#captcha');
-        captchaObj.onReady(function () {
-            $("#wait").hide();
-        });
-        $('#loginButton').click(function () {
-            $("#loginButton").val("登录中...");
-            $("#loginButton").attr("disabled","disabled");
-            var name=$("#username").val();
-            var pass=$("#password").val();
-            if(name==""||pass==""){
-                layer.msg("用户名或密码不能为空");
-                $("#loginButton").val("登录");
-                $("#loginButton").removeAttr("disabled");
-                return;
-            }
-            var reg = /^[0-9A-Za-z]+$/;
-            if(!reg.exec(name))
-            {
-                layer.msg("用户名格式有误");
-                $("#loginButton").val("登录");
-                $("#loginButton").removeAttr("disabled");
-                return;
-            }
-            var result = captchaObj.getValidate();
-            if (!result) {
-                layer.msg("请完成验证");
-                $("#loginButton").val("登录");
-                $("#loginButton").removeAttr("disabled");
-                return ;
-            }
-            $.ajax({
-                url: '/user/login?t=' + (new Date()).getTime(), // 加随机数防止缓存
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    username: name,
-                    password: pass,
-                    challenge: result.geetest_challenge,
-                    validate: result.geetest_validate,
-                    seccode: result.geetest_seccode
-                },
-                success: function (data) {
-                    if(data.success==true){
-                        window.location.href="..";
-                    }else{
-                        layer.msg(data.message);
-                        captchaObj.reset();
-                        $("#loginButton").val("登录");
-                        $("#loginButton").removeAttr("disabled");
-                    }
-                },
-                error:function(XMLHttpRequest){
-                layer.alert('数据处理失败! 错误码:'+XMLHttpRequest.status+' 错误信息:'+JSON.parse(XMLHttpRequest.responseText).message,{title: '错误信息',icon: 2});
-                $("#loginButton").val("登录");
-                $("#loginButton").removeAttr("disabled");
-            }
-            });
-        })
-        window.gt = captchaObj;
-    };
-
-    $.ajax({
-        url: '/geetestInit?t=' + (new Date()).getTime(), // 加随机数防止缓存
-        type: "GET",
-        dataType: 'json',
-        success: function (data) {
-            initGeetest({
-                gt: data.gt,
-                challenge: data.challenge,
-                new_captcha: data.new_captcha, // 用于宕机时表示是新验证码的宕机
-                offline: !data.success, // 表示用户后台检测极验服务器是否宕机，一般不需要关注
-                product: "popup", // 产品形式，包括：float，popup
-                width: "100%"
-            }, handler);
-        }
+<script src="../lib/jquery/jquery-2.1.4.min.js"></script>
+<script>
+    // 随机验证码
+    var uuid
+    $(document).ready(function () {
+        init_captcha()
     });
-
-    function forgetPass(){
-        layer.alert('体验测试账号密码：test | test', {
-            icon: 4,
-            title: "提示"
+    function init_captcha() {
+        $.ajax({
+            type: 'get',
+            url: 'http://api.anxinpha.com/api/user/captcha/init?t='+Math.random(),
+            success: function (res) {
+                uuid = res
+                $("#code").attr("src",'http://api.anxinpha.com/api/user/captcha/draw/'+uuid+'?t='+Math.random())
+            }
         });
     }
+    var m = parseInt(Math.random(0, 9) * (9999 - 1000) + 1000);
+    var n = $(".cms_login_ver").text(m)
+    // 原生获取文本内容
+    // var n = document.getElementsByClassName("cms_login_ver")[0].innerHTML;
+    // console.log(n)
+    // 点击按钮判断账户密码
 
-    $.ajax({
-        url:"/sys/base",
-        type: 'GET',
-        success:function (data) {
-            if(data.success!=true){
-                layer.alert(data.message,{title: '错误信息',icon: 2});
-                return;
-            }
-            if(data.result.hasLogNotice==1){
-                layer.alert(data.result.logNotice, {
-                    title: "通知"
-                });
-            }
-        },
-        error:function(XMLHttpRequest){
-            layer.alert('数据处理失败! 错误码:'+XMLHttpRequest.status,{title: '错误信息',icon: 2});
+    $('.login_btn').click(function () {
+        $(".login_btn").val("登录中...");
+        $(".login_btn").attr("disabled", "disabled");
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var code = $("#code").val();
+        if (username == "" || password == "") {
+            layer.msg("用户名或密码不能为空");
+            $(".login_btn").val("登录");
+            $(".login_btn").removeAttr("disabled");
+            return;
         }
-    });
+        var params = {
+            username,
+            password,
+            code
+        }
+        $.ajax({
+            type: "post",
+            url: "http://api.anxinpha.com/api/auth/login",
+            data: params,
+            success: function (res) {
+                window.location.href="http://manage.anxinpha.com/index"
+            }
+        })
+    })
+
 </script>
+
 </body>
 </html>

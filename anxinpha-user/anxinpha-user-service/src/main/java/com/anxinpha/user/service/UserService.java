@@ -2,6 +2,8 @@ package com.anxinpha.user.service;
 
 import com.anxinpha.user.pojo.User;
 
+import java.util.List;
+
 /**
  * @author 尹硕硕
  * @description
@@ -23,4 +25,10 @@ public interface UserService {
     User login(String username, String password);
 
     User getUserByUsername(String username);
+
+    List<User> getUsers();
+
+    Integer getCount();
+
+    Boolean update(User user);
 }

@@ -49,9 +49,13 @@ eureka:
 #配置文件式开发
 mybatis:
   #全局配置文件的位置
-  config-location: classpath:mybatis/mybatis-config.xml
+#  config-location: classpath:mybatis/mybatis-config.xml
   #所有sql映射配置文件的位置
   mapper-locations: classpath:mybatis/mapper/**/*.xml
+#  mapUnderscoreToCamelCase:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
 
 server:
   servlet:
